@@ -21,6 +21,10 @@ def sample_simulation():
 
 
 def random_movement():
+    """
+    This function runs random movement commands
+    :return:
+    """
     env = gym.make("CartPole-v1", render_mode="human")
 
     observation, info = env.reset(seed=42)
