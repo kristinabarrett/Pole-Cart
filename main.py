@@ -109,20 +109,20 @@ def pid_control(cart_pos: float, cart_vel: float, pole_angle: float, pole_vel: f
 
 
 def velocity_comparison(cart_pos: float, cart_vel: float, pole_angle: float, pole_vel: float) -> int:
-    if pole_angle > 0:
-        if pole_vel > 0:
-            if cart_vel < pole_vel:
+    if pole_angle > 0:  # Pole leans right
+        if pole_vel > 0:  # Pole falling down (right +)
+            if cart_vel < pole_vel:  # Pole is falling faster than the cart is moving
                 return PUSH_RIGHT
-            else:
+            else:  # Cart is moving faster than the pole falls
                 return PUSH_LEFT
-        else:
+        else:  # Pole moving up (left -)
             if cart_vel < 0 - pole_vel:
                 return PUSH_LEFT
             else:
                 return PUSH_RIGHT
     else:
         if pole_vel > 0:
-            if cart_vel < pole_vel:
+            if 0 - cart_vel < pole_vel:
                 return PUSH_RIGHT
             else:
                 return PUSH_LEFT
